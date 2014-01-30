@@ -1,0 +1,2 @@
+Gibberish.clear()
+new Gibberish.Sine(440, .71).connect();
