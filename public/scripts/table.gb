@@ -1,0 +1,9 @@
+var a, i, t;
+a = Gibberish.Table();
+t = [];
+for (i = 0; i <= 1023; i++) {
+  t[i] = Gibberish.rndf(-1, 1);
+}
+a.setTable(t);
+a.connect();
+

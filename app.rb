@@ -9,7 +9,7 @@ class GibberishExperiments < Sinatra::Base
   get '/' do
     base({
       :title => "Gibberish Experiments",
-      :menu => [:about, :simple_experiments],
+      :menu => [:about, :simple_experiments, :mixin_experiments],
       :footer => {:license => "Creative Commons cc-by-sa 3.0",:email_to => "ttonmeister@gmail.com", :build_with => "Ruby-Sinatra #{Sinatra::VERSION}"}
     })
     erb :index
@@ -17,9 +17,18 @@ class GibberishExperiments < Sinatra::Base
   
   get '/simple_experiments' do
     base({
-      :menu => [:sine, :triangle, :saw, :PWM, "band limited saw", "White Noise"]
+      :menu => [:sine, :triangle, :saw, :PWM, 
+        "band limited saw", "White Noise", 
+        :table, :karplus_strong]
     })
     erb :simple_experiments
+  end
+  
+  get '/mixin_experiments' do
+    base({
+      :menu => [:am_sine]
+    })
+    erb :mixin_experiments
   end
   
   get '/:exp/synthesis' do

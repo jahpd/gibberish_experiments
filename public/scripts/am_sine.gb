@@ -1,0 +1,6 @@
+a = new Gibberish.Sine(335, 0)
+b = new Gibberish.Sine(440, .71)
+a.amp = b
+b.connect()
+
+
