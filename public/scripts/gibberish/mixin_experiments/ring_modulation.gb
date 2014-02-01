@@ -1,0 +1,7 @@
+index = new Gibberish.Sine(110.3485, 1);
+mod = new Gibberish.Sine(330, 1);
+car = new Gibberish.Sine(440, 1);
+add = Add(mod, index);
+mul = Mul(car, add, 0.5);
+
+mul.connect();

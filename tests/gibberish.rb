@@ -5,21 +5,16 @@ class HelpersTest < Test::Unit::TestCase
   
   include Gibberish::Helpers
   
-  def setup
-    @opt = {
-      "base" => queryGibberish("base"),
-      "sine" => queryGibberish("sine")
-    }
-  end
+  attr_accessor :files
   
   def test_query
-    @opt.each_pair{|k, v|
-      array = queryGibberish(k)
-      i = 0
-      array.each{|e|
-        assert_equal(v[i], e)  
-        i += 1
-      }
+    ["base", "sine", "saw", 
+     "PWM", "triangle", "White Noise", 
+     "band limited saw", "karplus_strong", "table",
+     "simple_am", "ring_modulation", "allband_modulation"].each{|e|
+      array = queryGibberish(e)
+      assert_instance_of(Array, array)
+      assert_equal(true, array.length>0)
     }
   end
 end

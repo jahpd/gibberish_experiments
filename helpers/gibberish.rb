@@ -2,9 +2,12 @@ module Gibberish
   
   module Helpers
     
-    VERSION = "0.0.1"
+    VERSION = "0.0.1.1"
+    GIBBERISH_SCRIPTS_FOLDER = "./public/scripts/gibberish/*/*.gb"
     
     attr_accessor :title, :menu, :footer, :scripts
+    
+    public
     
     def base(hash, &block)
       hash.each_pair {|k, v|
@@ -22,12 +25,15 @@ module Gibberish
     end
     
     def queryGibberish(query)
-      f = "./public/scripts/#{query}.gb"
-      array = []
-      i = 0
-      File.foreach(f){|line|
-        array[i] = line
-        i += 1
+      array = Array.new
+      Dir.glob(GIBBERISH_SCRIPTS_FOLDER){|file|
+        f = (file.split "/")[5]
+        f = (f.split ".gb")[0]
+        if f == query
+          puts file
+          i = 0
+          File.foreach(file){|line| array[i] = line; i += 1}
+        end
       }
       array
     end

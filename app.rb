@@ -26,7 +26,7 @@ class GibberishExperiments < Sinatra::Base
   
   get '/mixin_experiments' do
     base({
-      :menu => [:am_sine]
+      :menu => [:simple_am, :ring_modulation, :allband_modulation]
     })
     erb :mixin_experiments
   end
