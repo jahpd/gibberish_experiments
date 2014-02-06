@@ -17,16 +17,17 @@ class GibberishExperiments < Sinatra::Base
   
   get '/simple_experiments' do
     base({
-      :menu => [:sine, :triangle, :saw, :PWM, 
-        "band limited saw", "White Noise", 
-        :table, :karplus_strong]
+      :menu => [:sine, :cosine, :triangle, 
+        :saw, :PWM, "band limited saw", 
+        "White Noise", :table, :karplus_strong]
     })
     erb :simple_experiments
   end
   
   get '/mixin_experiments' do
     base({
-      :menu => [:simple_am, :ring_modulation, :allband_modulation]
+      :menu => [:simple_am, :ring_modulation, :allband_modulation,
+        "phase_shift", :hilbert_transform, :singleband_am]
     })
     erb :mixin_experiments
   end

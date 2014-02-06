@@ -4,6 +4,7 @@ module Gibberish
     
     VERSION = "0.0.1.1"
     GIBBERISH_SCRIPTS_FOLDER = "./public/scripts/gibberish/*/*.gb"
+    GIBBERISH_COMPILED_FOLDER = "./public/scripts/javascript/synthesis/*.gb"
     
     attr_accessor :title, :menu, :footer, :scripts
     

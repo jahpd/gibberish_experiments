@@ -11,7 +11,8 @@ class HelpersTest < Test::Unit::TestCase
     ["base", "sine", "saw", 
      "PWM", "triangle", "White Noise", 
      "band limited saw", "karplus_strong", "table",
-     "simple_am", "ring_modulation", "allband_modulation"].each{|e|
+     "cosine", "simple_am", "ring_modulation", "allband_modulation",
+        "phase_shift", "hilbert_transform", "singleband_am"].each{|e|
       array = queryGibberish(e)
       assert_instance_of(Array, array)
       assert_equal(true, array.length>0)
