@@ -1,23 +1,7 @@
 # Gibberish Experiments
 
-_Gibberish Experiments_ é um servidor [Sinatra]() dedicado ao ensino de síntese sonora e design sonoro em _browsers_
+_Gibberish Experiments_ é um servidor [Rails](http://rubyonrails.org/) dedicado ao ensino de síntese sonora e design sonoro em _browsers_
 que suportem HTML5, utilizando a biblioteca [Gibberish.js](http://github.com/charlieroberts/Gibberish)
-
-# Dependencias
-
-Este servidor roda sob código [Ruby-2.0.0]() e, portanto, a primeira coisa a fazer é instalar o [Ruby]();
-Para usuários de windows (como inicialmente desenvolvido), sugiro baixar no site [RubyInstallers](), que oferece todo suporte de instalação
-rápida; é aconselhavel também baixar o [devkit](). Para Instalções em MacOSX e Linux, sugiro ir ao próprio site
-do [Ruby] e verificar a documentação para instalação apropriada. Aconselho baixar nessas plataformas o _software_
-[RVM]()
-
-Uma vez instalado, devemos instalar algumas dependencias (GEMs); para isso vá até a linha de comando:
-
-```
-	$ gem install sinatra
-```
-
-Este comando irá baixar outras dependências, então paciencia
 
 # Baixando este software
 
@@ -27,7 +11,43 @@ Para baixar este _software_, na linha de comando (supondo que já se tem [GIT]()
 	$ git clone https://github.com/jahpd/gibberish_experiments
 ```
 
-ou se você é novato, simplismente baixe o .zip ao lado
+ou se você não ganhou a confiança desses comandos, simplismente baixe o .zip ao lado
+
+# Dependencias
+
+## Linux
+
+### Debian e sabores
+
+``` 
+	$ sudo apt-get install ruby
+```
+
+## Windows
+Este servidor está sendo desenvolvido sob código [Ruby-2.0.0](https://www.ruby-lang.org/pt/downloads/) e, 
+portanto, a primeira coisa a fazer é instalá-lo; para usuários de windows, sugiro baixar no site [RubyInstallers](rubyinstaller.org)
+
+## MacOSX
+
+Siga esse [tutorial](http://code.tutsplus.com/tutorials/how-to-install-ruby-on-a-mac--net-21664)
+ou [esse](https://rvm.io/rvm/install)  
+
+## Servidor Rails
+
+Uma vez instalado o Ruby, devemos instalar algumas dependencias (GEMas); 
+para isso vá até a linha de comando:
+
+```
+	$ gem install rails
+```
+
+Para os que gostam de trabalhar offline
+
+``` 
+	$ gem install rails --rdoc	
+```
+
+Este comando irá baixar outras dependências, então paciencia
 
 # Rodando
 
@@ -40,8 +60,10 @@ Vá até a pasta do _software_
 e rode:
 
 ```
-	$ ruby app.rb
+	$ rails server
 ```
+
+Isso criará um servidor rails com suporte a sintese sonora
 
 # Testes
 
@@ -78,3 +100,5 @@ Hackeie, ajude-me a desenvolver um servidor seguro e com qualidade de audio :)
 - 0.0.1
   - Desenvolvido a base do servidor sinatra
   - Adicionados simples códigos: sine, triangle, saw, pwm, band limited saw, white noise
+- 0.0.11
+  - Servidor Rails iniciado
