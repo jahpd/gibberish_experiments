@@ -9,7 +9,7 @@
 		<nav id="menu">
 			<ul>
 			<% @menu.each {|e|%>
-				<li><a href=<%= e %>><%= e %></a></li>
+				<li><a href=<%= e[1] %>><%= e %></a></li>
 			<%}%>
 			</ul>
 		</nav>
