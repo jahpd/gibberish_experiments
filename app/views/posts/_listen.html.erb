@@ -1,22 +1,24 @@
+<h2>Teste seu <a href="/helps/1">código</a> aqui</h2>
 <textarea id="experiment"></textarea>
+<br />
 <button id="render">Play</button>
 <%= javascript_include_tag 'gibberish_2.0', 'stdlib' %>
 <script type="text/javascript">
 	$(document).ready(function(){
-		var $render = $("#render")
 		var b = false
-		$render.click(function(){
+		$("#render").click(function(){
 			b = !b ? true : false
 			if(b){
 				$(this).text("Stop");
 				init();
-				code = document.getElementById("experiment").innerHTML;
-				console.log("evaluating "+code)
-				eval(code)
+				code = $("textarea#experiment").text()
+				console.log(code);
+				eval(code);
 			}
 			else{
-				$(this).text("Play")
-				clear()
+				clear();
+				$(this).text("Play");
+				
 			}
 		})
 	})

@@ -3,8 +3,9 @@ class DashboardController < ApplicationController
     @title = "Gibberish Experiments"
     @menu = {
       "fork me" => "https://www.github.com/jahpd/gibberish_experiments",
-      "posts" => "/posts"
+      "posts" => "/posts",
+      "how to" => "/helps"
     }
-    @footer = {:license => "Creative Commons cc-by-sa 3.0", :email_to => "ttonmeister@gmail.com"}
+    @footer = {"license:" => "Creative Commons cc-by-sa 3.0", "email to:" => "ttonmeister@gmail.com"}
   end
 end
