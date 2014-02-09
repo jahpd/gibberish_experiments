@@ -5,14 +5,18 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+    
+    # import basic library located in posts, 
+    # and create a dynamic javascript
+    # to process audio in browser
+    writeStdlib("vendor/assets/javascripts/stdlib.js", "")
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
-    code = "fn = #{@post.code}"
-    code << "\neval(fn)"
-    @compiled_code = CoffeeScript.compile code
+    
+    
   end
 
   # GET /posts/new
@@ -73,5 +77,17 @@ class PostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:title, :author, :code, :created_at)
+    end
+    
+    def processAudioStdlib(fn, post)
+      if post.author == "stdlib"
+        fn << "window.#{post.title} = #{post.code}\n"
+      end
+      fn
+    end
+    
+    def writeStdlib(path, fn)
+      @posts.each {|post| processAudioStdlib(fn, post) }
+      File.write path, CoffeeScript.compile(fn)
     end
 end

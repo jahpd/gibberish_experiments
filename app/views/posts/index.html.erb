@@ -5,7 +5,6 @@
     <tr>
       <th>Title</th>
       <th>Author</th>
-      <th>Code</th>
       <th>Created at</th>
       <th></th>
       <th></th>
@@ -18,7 +17,6 @@
       <tr>
         <td><%= post.title %></td>
         <td><%= post.author %></td>
-        <td><%= post.code %></td>
         <td><%= post.created_at %></td>
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
@@ -29,5 +27,7 @@
 </table>
 
 <br>
-
 <%= link_to 'New Post', new_post_path %>
+<hr />
+<h2>Teste seu código aqui</h2>
+<%= render 'listen' %>
