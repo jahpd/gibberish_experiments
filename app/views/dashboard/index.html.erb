@@ -1,5 +1,37 @@
-<h1><%= @title %></h1>
 <hr />
 <%= render 'menu'%>
-<hr />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<h1 class="wtls"><%= @little_text %></h1>
+<h1 class="wtlslittle"><%= @message %></h1>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 <%= render 'footer' %>
+<hr />
+<script>
+	if(Gibberish.initialized)
+		Gibberish.clear();
+	Gibberish.init();
+	Gibberish.Time.export();
+	Gibberish.Binops.export();
+	var noise = new Gibberish.Noise(0.71);
+	var sine = new Gibberish.Sine(Gibberish.rndf(110, 880), 0.71);
+	var tri = new Gibberish.PWM(Gibberish.rndf(11, 110), 0.71, Mul(noise, 0.71));
+	new Gibberish.SVF({input:noise, cutoff:Gibberish.rndf(55, 440), Q: Mul(tri, 10), mode:3}).connect(); 
+</script>

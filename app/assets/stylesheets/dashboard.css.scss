@@ -1,3 +1,29 @@
 // Place all the styles related to the dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.little_in_corner{
+  font-size: 12px; 
+  text-align: right; 
+}
+
+.medium{
+  font-size: 15px;
+}
+
+.wtls{
+  font-size:30px;
+  text-align: center;
+}
+
+.wtlslittle{
+  font-size:9px;
+  text-align: center;
+}
+
+#editor{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

@@ -1,7 +1,5 @@
 <nav id="menu">
-	<ul>
-	<% @menu.each {|e|%>
-		<li><a href=<%= e[1] %>><%= e[0] %></a></li>
-	<%}%>
-	</ul>
+<% @menu.each {|e|%>
+	<%= link_to e[0], e[1]%> | 
+<%}%>
 </nav>

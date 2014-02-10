@@ -1,8 +1,8 @@
 Gibberails::Application.routes.draw do
-  root to: "dashboard#index"
-  resources :posts
-  resources :helps
-  get '/playmusic' => "playmusic#index"
+  root "dashboard#index"
+  get '/play' => "dashboard#play"
+  resources :libs
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

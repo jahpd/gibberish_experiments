@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Gibberails::Application.config.secret_key_base = 'b0ece487322ae03e2f4d80a5dfeaa47bea3dc653a9f662f021b4b1361edffaf07ad1c02b0ecbcf0506dff1f84a9bbb92e6a34813c85f2579dc4bd2e75492e0a6'
+Gibberails::Application.config.secret_key_base = '7a6c554f68283e7def9735915594f00adc026d0cc7c63c9182f9fd6eb5ec5e7cd6f072a56969b260ac7c359756dd3fc1fc1669b4ebfcdd3371cb406e0936e387'

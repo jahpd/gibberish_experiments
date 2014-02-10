@@ -43,6 +43,3 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
-# Use redcarpet to render markdown templates/partials
-gem 'redcarpet'
