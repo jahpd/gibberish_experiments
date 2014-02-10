@@ -9,13 +9,12 @@ class PostsController < ApplicationController
     # import basic library located in posts, 
     # and create a dynamic javascript
     # to process audio in browser
-    writeStdlib("vendor/assets/javascripts/stdlib.js", "")
+    writeStdlib "vendor/assets/javascripts/stdlib.js"
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
-    
     
   end
 
@@ -79,15 +78,13 @@ class PostsController < ApplicationController
       params.require(:post).permit(:title, :author, :code, :created_at)
     end
     
-    def processAudioStdlib(fn, post)
-      if post.author == "stdlib"
-        fn << "window.#{post.title} = #{post.code}\n"
-      end
-      fn
-    end
-    
-    def writeStdlib(path, fn)
-      @posts.each {|post| processAudioStdlib(fn, post) }
-      File.write path, CoffeeScript.compile(fn)
+    def writeStdlib(path)
+      string = ""
+      @posts.each {|post|
+        if post.author == "stdlib"
+          string << "window.#{post.title} = #{post.code}\n"
+        end  
+      }
+      File.write path, CoffeeScript.compile(string)
     end
 end

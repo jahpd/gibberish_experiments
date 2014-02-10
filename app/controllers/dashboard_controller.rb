@@ -1,10 +1,11 @@
 class DashboardController < ApplicationController
   def index
-    @title = "Gibberish Experiments"
+    @title = "Gibberish Experiments - An aplication to Blog-Eletroacoustic-Music"
     @menu = {
-      "fork me" => "https://www.github.com/jahpd/gibberish_experiments",
       "posts" => "/posts",
-      "how to" => "/helps"
+      "how to" => "/helps",
+      "live-coding" => "/playmusic",
+      "fork me on github" => "https://www.github.com/jahpd/gibberish_experiments",
     }
     @footer = {"license:" => "Creative Commons cc-by-sa 3.0", "email to:" => "ttonmeister@gmail.com"}
   end

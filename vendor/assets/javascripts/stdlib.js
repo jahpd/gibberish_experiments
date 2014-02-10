@@ -11,7 +11,7 @@
     return console.log("Gibberish cleared");
   };
 
-  window.osc = function(name, opt, callback) {
+  window.ugen = function(name, opt, callback) {
     var k, t, v, _i, _len;
     t = new Gibberish[name]();
     for (v = _i = 0, _len = opt.length; _i < _len; v = ++_i) {

@@ -15,24 +15,29 @@ ou se você não ganhou a confiança desses comandos, simplismente baixe o .zip 
 
 # Dependencias
 
-## Linux
+## Ruby
 
-### Debian e sabores
+Este servidor está sendo desenvolvido sob código [Ruby-2.0.0](https://www.ruby-lang.org/pt/downloads/) e 
+[Ruby on Rails 4.0](); para baixar no seu sistema operacional, verifique abaixo;
+
+### Linux
+
+#### Debian e sabores
 
 ``` 
 	$ sudo apt-get install ruby
 ```
 
-## Windows
-Este servidor está sendo desenvolvido sob código [Ruby-2.0.0](https://www.ruby-lang.org/pt/downloads/) e, 
-portanto, a primeira coisa a fazer é instalá-lo; para usuários de windows, sugiro baixar no site [RubyInstallers](rubyinstaller.org)
+#### Windows
 
-## MacOSX
+para usuários de windows, sugiro baixar no site [RubyInstallers](rubyinstaller.org). Não esqueça de baixar também o DevKit.
+
+#### MacOSX
 
 Siga esse [tutorial](http://code.tutsplus.com/tutorials/how-to-install-ruby-on-a-mac--net-21664)
-ou [esse](https://rvm.io/rvm/install)  
+ou [esse](https://rvm.io/rvm/install). 
 
-## Servidor Rails
+## Rails
 
 Uma vez instalado o Ruby, devemos instalar algumas dependencias (GEMas); 
 para isso vá até a linha de comando:
@@ -44,7 +49,7 @@ para isso vá até a linha de comando:
 Para os que gostam de trabalhar offline
 
 ``` 
-	$ gem install rails --rdoc	
+	$ gem install rails --rdoc
 ```
 
 Este comando irá baixar outras dependências, então paciencia
@@ -57,7 +62,13 @@ Vá até a pasta do _software_
 	$ cd gibberish_experiments
 ```
 
-e rode:
+instale as dependências necessárias com o comando _bundle_
+
+```
+	$ bundle
+```
+
+e finalmente inicialize o servidor
 
 ```
 	$ rails server
@@ -73,27 +84,14 @@ Todos os testes estão sendo feitos na pasta _tests_ (duhh); é só rodar:
 	$ ruby tests/arquivo_de_teste.rb
 ```
 
-# Códigos Gibberish
-
-Para facilitar a vida dos desenvolvedores, códigos funcionais do gibberish estão em _public/scripts_ com extensão .gb;
-Na verdade são códigos javascript, mas sem a enrolação de ficar invocando tags _<script/>_
-
-##### Desenvolvedores: Importante!
-
-NUNCA RODE CÓDIGOS GIBBERISH COM ATRIBUTOS _language_
- 
-```html
-	<script language="text/javascript">
-	/* nao faça o codigo...*/
-	</script>
-```
-
-Não sei porque, mas o Gibberish nunca roda adequadamente (levei 4 horas p descobrir isso...);
-tirando este atributo, o Gibberish roda adequadamente.
-
 # TODO
 
 Hackeie, ajude-me a desenvolver um servidor seguro e com qualidade de audio :)
+
+- Segurança:
+	- Posts são scripts, devem ser validados com códigos de síntese e não permitir nenhum outro código
+- Áudio:
+	- Verificar a razão pela qual o sintetizador está sofrendo de x-runs
 
 # Versões
 
@@ -102,3 +100,7 @@ Hackeie, ajude-me a desenvolver um servidor seguro e com qualidade de audio :)
   - Adicionados simples códigos: sine, triangle, saw, pwm, band limited saw, white noise
 - 0.0.11
   - Servidor Rails iniciado
+- 0.0.2
+  - Inserido editor Ace
+  - Ace consegue executar códgos gerados por posts
+  - Conseguindo fazer Síntese sonora com javascript

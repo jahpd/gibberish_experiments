@@ -1,0 +1,46 @@
+<div id="editor"></div>
+<script type="text/javascript", chcharset="UTF-8">
+var editor = ace.edit("editor")
+editor.setTheme("ace/theme/monokai")
+editor.getSession().setMode("ace/mode/javascript")
+document.getElementById('editor').style.fontSize='20px';
+
+// set default code in editor
+var script = "\/\/ Esse é o editor para live-coding\n"
+script += "\/\/ para executar algum código, utilize teclas de atalho\n"
+script += "\/\/ Windows -> Ctrl + M (para executar), Ctrl+. (para parar)\n"
+script += "\/\/ Mac -> Command + M, Command+.\n"
+script += "ugen('Sine', {freq: 440, amp: .71}, function(g){\n\tg.connect();\n});"
+editor.setValue(script);
+
+// Set some keys in keyboard to execute audio
+editor.commands.addCommand({
+    name: 'play',
+    bindKey: {
+      win: 'Ctrl-M',
+      mac: 'Command-M'
+    },
+    exec: function(editor){
+      Gibberish.init();
+      Gibberish.Time.export();
+      Gibberish.Binops.export()
+      Gibberish.dirty()
+      var val = editor.getValue()
+      console.log(val)
+      eval(val);
+    },
+	readOnly: true
+})
+
+editor.commands.addCommand({
+	name: 'stop',
+    bindKey: {
+      win: 'Ctrl-.',
+      mac: 'Command-.'
+    },
+    exec: function(editor) { 
+    	Gibberish.clear()
+   	},
+    readOnly: true
+})
+</script>
