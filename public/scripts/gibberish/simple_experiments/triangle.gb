@@ -1,2 +1,0 @@
-Gibberish.clear()
-new Gibberish.Triangle({frequency:570, amp:.35}).connect();

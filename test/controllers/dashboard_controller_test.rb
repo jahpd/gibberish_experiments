@@ -6,4 +6,9 @@ class DashboardControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get play" do
+    get :play
+    assert_response :success
+  end
+
 end

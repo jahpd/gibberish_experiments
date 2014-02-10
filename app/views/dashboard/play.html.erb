@@ -1,0 +1,34 @@
+<div id='editor'></div>
+<%= javascript_include_tag 'ace.js', 'theme-monokai.js', 'mode-javascript' %>
+<%= javascript_include_tag 'gibberish_2.0.min', 'app_audio_lib'%>
+<script type="text/javascript" charset="UTF-8">
+	var editor = ace.edit('editor');    
+    editor.setTheme('ace/theme/monokai');    
+    editor.getSession().setMode('ace/mode/javascript');
+    code = "\/\/ Esse é o editor Ace para Live-coding\n\/\/ Invoque alguma(s) função(õs) válida (verifique em /libs)\n\/\/ Para executar:\n\/\/\twindows/linux: Ctrl+Enter\n\/\/\tmac: Command+Enter\n\/\/ Para parar de executar\n\/\/\twindows/linux: Ctrl+.\n\/\/\tmac: Command+.\n"  
+    code+="ugen = stdlib.ugen\nugen('Sine', {freq: 440, amp:0.71}, function(err, g){\n\tg.connect();\n});"
+    editor.setValue(code)
+	editor.commands.addCommand({
+      name: 'play',
+      bindKey: {win: 'Ctrl-M',  mac: 'Command-M'},
+      exec: function(editor) {
+        stdlib.init(function(p){
+          if(p){
+            console.log(editor.getValue())
+            eval(editor.getValue())
+          }
+        })
+      },
+      readOnly: true 
+    });
+    editor.commands.addCommand({
+      name: 'stop',
+      bindKey: {win: 'Ctrl-.',  mac: 'Command-.'},
+      exec: function(editor) {
+        stdlib.clear(function(p){
+          console.log('stopping')
+        })
+      },
+      readOnly: true 
+    });
+</script>

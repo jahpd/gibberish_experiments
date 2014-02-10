@@ -1,3 +1,0 @@
-a = new Gibberish.Sine(225, .71);
-b = new Gibberish.Sine(440, Mul(a, 0.71));
-b.connect();
