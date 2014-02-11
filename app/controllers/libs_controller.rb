@@ -5,7 +5,6 @@ class LibsController < ApplicationController
   # GET /libs.json
   def index
     @libs = Lib.all
-    
   end
 
   # GET /libs/1

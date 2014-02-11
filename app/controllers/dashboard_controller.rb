@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
   def index
+    write Lib.all, "vendor/assets/javascripts/app_audio_lib.js"
     @title = "Gibberish Experiments"
     @subtitle = "An aplication to Blog-Music"
     @menu = {
@@ -13,7 +14,7 @@ class DashboardController < ApplicationController
   end
   
   def play
-    write Lib.all, "vendor/assets/javascripts/app_audio_lib.js"
+    
   end
   
   private
