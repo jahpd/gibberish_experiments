@@ -9,8 +9,13 @@ class DashboardController < ApplicationController
       "live-coding" => "/play"
     }
     @little_text= "Ya'now'bout blog-music, Why The Luck Stiffer?"
-    @message= "...try refresh your browser..."
-    @caution = "(maybe ya want be careful with volume)"
+    @messages= [
+      "------------------------------------------------------------W------------------------------------------------------------",
+      "(try refresh your browser)",
+      "...sometimes, your are unnable to hear (or see) some things...",
+      "?ya wannabe careful with volume?",
+      "------------------------------------------------------------AA------------------------------------------------------------"
+    ]
     @footer = {"license:" => "Creative Commons cc-by-sa 3.0", "email to:" => "yaknowboutblogmusic@gmail.com"}
   end
   

@@ -1,125 +1,78 @@
 (function() {
+  var __slice = [].slice;
+
   window.stdlib = {};
 
-  window.stdlib.init = function(callback) {
-    return clear(function(e) {
-      if (e) {
-        Gibberish.init();
-        Gibberish.Time["export"]();
-        Gibberish.Binops["export"]();
-        if (callback) {
-          return callback(Gibberish.initialized);
-        } else {
-          return Gibberish.initialized;
-        }
+  window.stdlib.init = function() {
+    var callbacks, do_callbacks, export_all_and, initThen;
+    callbacks = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+    initThen = function() {
+      return Gibberish.init();
+    };
+    export_all_and = function() {
+      var fn, _i, _len, _ref, _results;
+      _ref = "Time Binops".split(" ");
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        fn = _ref[_i];
+        _results.push(Gibberish[fn]);
       }
-    });
+      return _results;
+    };
+    do_callbacks = function() {
+      var c, _i, _len, _results;
+      if (callbacks.length > 0) {
+        _results = [];
+        for (_i = 0, _len = callbacks.length; _i < _len; _i++) {
+          c = callbacks[_i];
+          _results.push(c());
+        }
+        return _results;
+      }
+    };
+    return stdlib.clear(initThen, export_all_and, do_callbacks);
   };
 
-  window.stdlib.clear = function(callback) {
-    if (Gibberish.initialized) {
-      Gibberish.clear();
-      if (callback) {
-        return callback(!Gibberish.initialized);
-      } else {
-        return !Gibberish.initialized;
+  window.stdlib.clear = function() {
+    var c, callbacks, _i, _len, _results;
+    callbacks = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+    Gibberish.clear();
+    _results = [];
+    for (_i = 0, _len = callbacks.length; _i < _len; _i++) {
+      c = callbacks[_i];
+      if (callbacks.length > 0) {
+        _results.push(c());
       }
+    }
+    return _results;
+  };
+
+  window.stdlib.ugen = function() {
+    var c, callbacks, g, k, name, opts, v, _i, _j, _len, _len1, _results;
+    name = arguments[0], opts = arguments[1], callbacks = 3 <= arguments.length ? __slice.call(arguments, 2) : [];
+    g = new Gibberish[name]();
+    for (v = _i = 0, _len = opts.length; _i < _len; v = ++_i) {
+      k = opts[v];
+      g[k] = v;
+    }
+    if (callbacks.length(!0)) {
+      _results = [];
+      for (_j = 0, _len1 = callbacks.length; _j < _len1; _j++) {
+        c = callbacks[_j];
+        _results.push(c(g));
+      }
+      return _results;
     } else {
-      return console.log("Nothing to clear");
+      return g;
     }
   };
 
-  window.stdlib.ugen = function(name, opt, callback) {
-    var error, g, k, v, _i, _len;
-    if (Gibberish[name]) {
-      g = new Gibberish[name]();
-      for (v = _i = 0, _len = opt.length; _i < _len; v = ++_i) {
-        k = opt[v];
-        g[k] = v;
-      }
-      if (callback) {
-        return callback(false, g);
-      } else {
-        return g;
-      }
-    } else {
-      error = new Error("ugen " + name + " not exist");
-      if (callback) {
-        return callback(true, error);
-      } else {
-        return error;
-      }
-    }
-  };
-
-  window.stdlib.wnoise = function(amp, callback) {
-    return stdlib.ugen('Noise', {
+  window.stdlib.wnoise = function() {
+    var amp, callbacks;
+    amp = arguments[0], callbacks = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+    return stdlib.ugen("Noise", {
       amp: amp
-    }, function(e, noise) {
-      if (callback) {
-        return callback(noise);
-      } else {
-        return noise;
-      }
-    });
+    }, callbacks);
   };
-
-  window.stdlib.sine = function(amp, callback) {
-    return stdlib.ugen('Sine', {
-      amp: amp
-    }, function(e, sine) {
-      if (callback) {
-        return callback(sine);
-      } else {
-        return sine;
-      }
-    });
-  };
-
-  window.random = {};
-
-  window.random.wnoise = function(range, callback) {
-    var amp;
-    if (typeof range === Array) {
-      amp = Gibberish.rndf(range[0], range[range.length - 1]);
-      return stdlib.wnoise(amp, function(e, noise) {
-        if (callback) {
-          return callback(noise);
-        } else {
-          return noise;
-        }
-      });
-    }
-  };
-
-  window.random.sine = function(rfreq, ramp, callback) {
-    var a, f;
-    if (typeof rFreq === Array && typeof rAmp === Array) {
-      f = Gibberish.rndf(rfreq[0], rfreq[rfreq.length - 1]);
-      a = Gibberish.rndf(ramp[0], ramp[ramp.length - 1]);
-      return stdlib.ugen('Sine', {
-        freq: f,
-        amp: a
-      }, function(e, sine) {
-        if (callback) {
-          return callback(sine);
-        } else {
-          return sine;
-        }
-      });
-    }
-  };
-
-  window.dashboard = {};
-
-  window.dashboard.sine = function() {
-    return random.sine([220, 880], [0.5, 0.1], function(sine) {
-      return sine.connect();
-    });
-  };
-
-  window.dashboard.runnning = stdlib.init(e)(function() {
-    return dashboard.sine();
-  });
 
 }).call(this);

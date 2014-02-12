@@ -6,13 +6,12 @@
 <br />
 <br />
 <br />
-<br />
-<br />
-<br />
 <h1 class="wtls"><%= @little_text %></h1>
-<h1 class="wtlslittle"><%= @message %></h1>
-<h1 class="wtlslittle"><%= @caution %></h1>
-<br />
+<div >
+	<% @messages.each{|m| %>
+	<p class="wtlslittle"><%= m %></p>
+	<% } %>
+</div>
 <br />
 <br />
 <br />
@@ -24,6 +23,7 @@
 <br />
 <%= render 'footer' %>
 <hr />
+<%= javascript_include_tag "dashboard" %>
 <!-- TODO
 	Just to compare! Very important to development
 	Lets create some analizer
