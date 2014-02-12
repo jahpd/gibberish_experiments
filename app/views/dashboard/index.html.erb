@@ -11,7 +11,7 @@
 <br />
 <h1 class="wtls"><%= @little_text %></h1>
 <h1 class="wtlslittle"><%= @message %></h1>
-<br />
+<h1 class="wtlslittle"><%= @caution %></h1>
 <br />
 <br />
 <br />
@@ -24,60 +24,15 @@
 <br />
 <%= render 'footer' %>
 <hr />
-
-
-<script>
-	clear = stdlib.clear
-	ugen = stdlib.ugen
-	stdlib.init(function(e){
-		if(!e){
-			ugen('Noise', {amp:.1}, function(err, noise){
-				ugen('Sine', {freq:440, amp:.1}, function(err, sine){
-					sine.connect()
-				})
-			})
-		}
-	})
-</script>
-
 <!-- TODO
 	Just to compare! Very important to development
 	Lets create some analizer
-<script type="text/javascript">
-	if(Gibberish.initialized)
-		Gibberish.clear()
-		
-	Gibberish.init()
-	Gibberish.Time.export()
-	Gibberish.Binops.export()
-	
-	var rnoisea = Gibberish.rndf(0.001, Math.sqrt(0.5))
-	var noise = new Gibberish.Noise(rnoisea)
-	
-	var rsinef = Gibberish.rndf(110, 1880)
-	var rsinea = Gibberish.rndf(0.01, 1.01)
-	sine_noise = Mul(rsinea, noise)
-	var sine =  new Gibberish.Sine(rsinef, sine_noise)
-	
-	var rpwmf = Gibberish.rndf(110, 1880)
-	var rpwma = Gibberish.rndf(0.01, 1.01)
-	var rpwmw = Gibberish.rndf(0.01, 1.01)
-	var sine_pwm = Mul(sine, rpwmw)
-	var pwm = new Gibberish.PWM(rpwmf, 0.71, sine_pwm)
-	
-	var d_c = Gibberish.rndf(400, 1000)
-	var d_cutoff = Mul(d_c, pwm)
-	
-	var d_qq = Gibberish.rndf(0.01, 1)
-	var d_q = Mul(d_qq, pwm)
-	var svf = new Gibberish.SVF({
-		input:noise, 
-		cutoff:d_cutoff, 
-		Q:d_q, 
-		mode:2
+<script>
+	var init = stdlib.init
+	var sine = dashboard.sine
+	init(function(e){
+		if(!e){
+		  sine()
+		}
 	})
-	var vol = 0.5
-	console.log(vol)
-	Mul(svf, vol).connect()
 </script>
--->

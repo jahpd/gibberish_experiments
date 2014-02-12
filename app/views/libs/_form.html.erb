@@ -1,4 +1,4 @@
-<%= form_for(@lib) do |f| %>
+<%= form_for @lib, :builder => LibsHelper::Ace do |f| %>
   <% if @lib.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@lib.errors.count, "error") %> prohibited this lib from being saved:</h2>
@@ -15,19 +15,30 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+  
   <div class="field">
     <%= f.label :author %><br>
     <%= f.text_field :author %>
   </div>
-  <div class="field">
-    <%= f.label :code %><br>
-    <%= f.text_area :code %>
-  </div>
+  
   <div class="field">
     <%= f.label :created_at %><br>
     <%= f.datetime_select :created_at %>
   </div>
+  
+  <div class="field">
+    <%= f.label :code %><br><br>
+    <%= f.hidden_text_area :code %>
+    <%= f.load :code, :lang => :coffee, :wrap => :div, :position => :absolute, :top => '35%', :left => '0.5%', :right => '0.5%', :bottom => '40%' %>
+  </div>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
   <div class="actions">
     <%= f.submit %>
   </div>
+  
+  <%= f.run @lib.code, :theme => :monokai %>
 <% end %>

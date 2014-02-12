@@ -14,6 +14,7 @@ class LibsController < ApplicationController
 
   # GET /libs/new
   def new
+    @helper = PlayHelper::Ace.new
     @lib = Lib.new
   end
 
