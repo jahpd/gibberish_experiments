@@ -4,6 +4,7 @@ class LibsController < ApplicationController
   # GET /libs
   # GET /libs.json
   def index
+    write Lib.all, "vendor/assets/javascripts/app_audio_lib.js", true
     @libs = Lib.all
   end
 
@@ -71,5 +72,43 @@ class LibsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def lib_params
       params.require(:lib).permit(:name, :author, :code, :created_at)
+    end
+  
+    def genLibDict(libs, debug=false)
+      dict = Hash.new
+      libs.each do |lib|
+        if not dict[lib.author]
+          dict[lib.author]= Hash.new
+          dict[lib.author][:head] = "window.#{lib.author} = {}\n\n"
+          dict[lib.author][:codes] = Hash.new
+        end
+        dict[lib.author][:codes][lib.name] = "window.#{lib.author}.#{lib.name} = #{lib.code}\n\n"
+      end
+      if debug 
+        logger.info { dict }
+      end
+      dict  
+    end
+    
+    def genLibString(libs, s, debug=false)
+      genLibDict(libs, debug).each do |key, val|
+        s << val[:head]
+        val[:codes].each do |k, v|
+          s << v
+        end
+      end
+      if debug
+        logger.info { s }
+      end
+      s
+    end
+    
+    def write(libs, path, debug)
+      if libs.length > 0
+        string = genLibString(libs, "", debug)
+        compiled = CoffeeScript.compile string
+        if compiled.length >  0 then logger.warn { "writed new javascript #{path}" } end
+        File.write path, compiled
+      end
     end
 end
