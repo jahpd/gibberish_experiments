@@ -1,30 +1,33 @@
-// Place all the styles related to the dashboard controller here.
+// Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.little_in_corner{
-  font-size: 12px; 
-  text-align: right; 
-}
-
-.medium{
-  font-size: 15px;
-}
-
-.wtls{
-  font-size:32px;
-  text-align: center;
-  color: #CCCCAA;
-}
-
-.wtlslittle{
-  font-size:5.5px;
+.centralized{
   text-align: center;
 }
 
-#editor{
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+.right{
+  text-align: right;
+}
+
+.justify{
+  text-align: justify;
+}
+
+.header{
+  padding: 12% 20% 12% 20%;
+}
+
+.post{
+  padding: 5% 12% 5% 12%;
+}
+
+.shadow{
+  text-shadow: #DDD 3px 3px 2px;
+}
+
+.little{
+  font-size: 50%
+}
+.littlelittle{
+  font-size: 45%
 }

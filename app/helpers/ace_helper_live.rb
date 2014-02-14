@@ -20,5 +20,9 @@ module AceHelper
       javascript_tag CoffeeScript.compile(_src)
     end
     
+    def action(action) 
+       javascript_tag CoffeeScript.compile(hook_ace(action))
+    end
+    
   end
 end

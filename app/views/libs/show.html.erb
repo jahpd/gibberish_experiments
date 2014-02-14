@@ -20,5 +20,8 @@
   <%= @lib.created_at %>
 </p>
 
-<%= link_to 'Edit', edit_lib_path(@lib) %> |
+<%= link_to 'Edit', edit_lib_path(@lib) %>
+|
+<td><%= link_to 'Destroy', @lib, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+|
 <%= link_to 'Back', libs_path %>

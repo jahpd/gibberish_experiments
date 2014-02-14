@@ -6,6 +6,7 @@ class LibsController < ApplicationController
   def index
     write Lib.all, "vendor/assets/javascripts/app_audio_lib.js", true
     @libs = Lib.all
+    @current_version = "Music version #{Date.new}"
   end
 
   # GET /libs/1

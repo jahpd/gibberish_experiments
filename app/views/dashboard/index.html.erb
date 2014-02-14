@@ -6,21 +6,26 @@
 <br />
 <br />
 <br />
-<h1 class="wtls"><%= @little_text %></h1>
+<h1 class="wtls centralized"><%= @little_text %></h1>
 <div >
-	<% @messages.each{|m| %>
-	<p class="wtlslittle"><%= m %></p>
-	<% } %>
+	<%= @helper.load :code, :lang => :coffee, :wrap => :div, :position => :absolute, :top => '37%', :left => '30%', :right => '30%', :bottom => '9%' %>
+	<%= @helper.run  @src, :theme => :monokai %>
+	<%= @helper.action :render_audio %>
 </div>
 <br />
 <br />
 <br />
 <br />
+<div>
+	<br />
+	<% @messages.each{|m| %>
+		<p class="little left"><%= m %></p>
+	<% } %>
+	<%= render 'footer' %>
+	<br />
+</div>
 <br />
 <br />
 <br />
-<br />
-<br />
-<%= render 'footer' %>
 <hr />
 <%= javascript_include_tag "dashboard" %>

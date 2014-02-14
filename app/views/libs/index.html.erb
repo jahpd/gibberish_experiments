@@ -1,34 +1,21 @@
-<%= link_to 'Home', '/' %>
-<%= link_to 'Go play', '/play' %>
+<div class="centralized">
+	<%= link_to 'Home', '/' %>
+	|
+	<%= link_to 'live-coding', '/play' %>
 
-<h1>Listing libs</h1>
-<%= link_to 'New Module', new_lib_path %>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Author</th>
-      <th>Code</th>
-      <th>Created at</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+	<h1 class>How much time you can hear a sound?</h1>
+	<p><%= @current_version%></p>
+	<%= link_to 'New Module', new_lib_path %>
 
-  <tbody>
-    <% @libs.each do |lib| %>
-      <tr>
-        <td><%= lib.name %></td>
-        <td><%= lib.author %></td>
-        <td><%= lib.code %></td>
-        <td><%= lib.created_at %></td>
-        <td><%= link_to 'Show', lib %></td>
-        <td><%= link_to 'Edit', edit_lib_path(lib) %></td>
-        <td><%= link_to 'Destroy', lib, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+	<div class="post shadow">
+		
+		<br />
+		<% @libs.each do |lib| %>
+      	<% v = "#{lib.author}.#{lib.name} | #{lib.created_at}" %>
+        <%= link_to v, lib %>
+        <br />
+    	<% end %>
+	</div>
+</div>
 <br>
 <%= javascript_include_tag "libs", "data-turbolinks-track" => true%>

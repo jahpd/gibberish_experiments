@@ -1,3 +1,5 @@
+<%= javascript_include_tag "play", "coffee-script" %>
 <%= @helper.load :code, :lang => :coffee, :wrap => :div, :position => :absolute, :top => '0px', :left => '0px', :right => '0px', :bottom => '0px' %>
 <%= @helper.run  @src, :theme => :monokai %>
+<%= @helper.action :render_audio %>
 
