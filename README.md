@@ -18,7 +18,7 @@ ou se você não ganhou a confiança desses comandos, simplismente baixe o .zip 
 ## Ruby
 
 Este servidor está sendo desenvolvido sob código [Ruby-2.0.0](https://www.ruby-lang.org/pt/downloads/) e 
-[Ruby on Rails 4.0](); para baixar no seu sistema operacional, verifique abaixo;
+[Ruby on Rails 4.0](https://www.rails.org); para baixar no seu sistema operacional, verifique abaixo;
 
 ### Linux
 
@@ -30,7 +30,8 @@ Este servidor está sendo desenvolvido sob código [Ruby-2.0.0](https://www.ruby
 
 #### Windows
 
-para usuários de windows, sugiro baixar no site [RubyInstallers](rubyinstaller.org). Não esqueça de baixar também o DevKit.
+para usuários de windows, sugiro baixar no site [RubyInstallers](rubyinstaller.org). 
+Não esqueça de baixar também o DevKit.
 
 #### MacOSX
 
@@ -74,7 +75,18 @@ e finalmente inicialize o servidor
 	$ rails server
 ```
 
-Isso criará um servidor rails com suporte a sintese sonora
+Isso criará um servidor rails com suporte do Gibberish.js para áudio; para tanto, abra seu navegador,
+digite localhost:3000 e você poderá acessar o aplicativo
+
+# Base de dados
+
+Provavelmente, durante o estágio de desenvolvimento, terá uma base de dados pré-criada para dar desenvolvimento
+ao projeto. Ela carregará scripts .coffee que descrevem uma série de rotinas de áudio. No estágio atual de desenvolvimento,
+ela será chamada de RAILS; De fato, os scripts são semelhantes a Postagens de um Blog; contém um título, author, data de criação
+e a publicação, escrita a partir de uma convenção.
+
+Futuramente, planejamos tirar essa base de dados do seu controle, pois fazer música pensando nisso é enfadonho;
+assim, um usuário pode criar suas próprias bibliotecas.
 
 # Testes
 
@@ -95,12 +107,24 @@ Hackeie, ajude-me a desenvolver um servidor seguro e com qualidade de audio :)
 
 # Versões
 
-- 0.0.1
-  - Desenvolvido a base do servidor sinatra
-  - Adicionados simples códigos: sine, triangle, saw, pwm, band limited saw, white noise
-- 0.0.11
-  - Servidor Rails iniciado
+- 0.0.21
+  - Design Principal feito
+  - Editor de texto ace integrado
+  - Alguma Funcionabilidade entre servidor, editor e cliente de áudio:
+    - captura do código-fonte .coffee de áudio corrente na página
+    - comandos do editor:
+      - Windows:
+        - Ctrl+M - Renderiza código do editor
+        - Ctrl+. - Para o cliente de áudio (com problemas)
 - 0.0.2
   - Inserido editor Ace
   - Ace consegue executar códgos gerados por posts
   - Conseguindo fazer Síntese sonora com javascript
+- 0.0.11
+  - Servidor Rails iniciado
+- 0.0.1
+  - Desenvolvido a base do servidor sinatra
+  - Adicionados simples códigos: sine, triangle, saw, pwm, band limited saw, white noise
+
+
+

@@ -42,5 +42,5 @@ RAILS.INIT ->
         1024, 2048, 4096, 8192, 16384
         1024, 1024
       ]
-    durations:[ms(5000)..ms(30)]  
+    durations:[ms(1000)..ms(30)]  
   ).start()
