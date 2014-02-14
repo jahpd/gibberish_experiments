@@ -16,7 +16,7 @@ RAILS.INIT ->
     pitchMin:-4
     pitchMax:4
   
-  new Gibberish.Reverb(
+  rev = new Gibberish.Reverb
     input: buffer
     roomSize: RAILS.GEN_RANGE 'Sine',
       freq: [0.001, 1]
@@ -27,8 +27,15 @@ RAILS.INIT ->
     dry:RAILS.GEN_RANGE 'Sine',
       freq: [0.5, 1.5]
       amp: [0.9, 1]
-  ).connect()
+  
+  rev2 = new Gibberish.Reverb
+    input: rev
+    roomSize: 0.8
+    wet:0.95
+    dry:.65
  
+  rev2.connect()
+  
   RAILS.GEN_SEQ(
     target: karplus
     keysAndValues:

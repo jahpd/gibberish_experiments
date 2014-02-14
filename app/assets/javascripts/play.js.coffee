@@ -6,24 +6,32 @@ RAILS.INIT ->
   
   buffer = new Gibberish.BufferShuffler
     input: karplus
-    chance:.25
+    chance:.45
     amount:125
     rate:44100
     pitchMin:-4
     pitchMax:4
   
-  new Gibberish.Reverb(
+  rev = new Gibberish.Reverb
     input: buffer
-    roomSize: RAILS.GEN_RANGE "Sine",
+    roomSize: RAILS.GEN_RANGE "PWM",
       freq: [0.001, 1]
       amp: [0.9, 1]
-    wet:RAILS.GEN_RANGE "Sine",
+      pulsewidth: [0.1, 0.9]
+    wet:RAILS.GEN_RANGE "Saw",
       freq: [0.5, 1.5]
       amp: [0.9, 1]
     dry:RAILS.GEN_RANGE "Sine",
       freq: [0.5, 1.5]
       amp: [0.9, 1]
-  ).connect()
+  
+  rev2 = new Gibberish.Reverb
+    input: rev
+    roomSize: 0.75
+    wet:0.75
+    dry:.5
+ 
+  rev2.connect()
  
   RAILS.GEN_SEQ(
     target: karplus
