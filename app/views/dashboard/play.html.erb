@@ -1,5 +1,4 @@
-<%= javascript_include_tag "play", "coffee-script" %>
-<%= @helper.load :code, :lang => :coffee, :wrap => :div, :position => :absolute, :top => '0px', :left => '0px', :right => '0px', :bottom => '0px' %>
-<%= @helper.run  @src, :theme => :monokai %>
-<%= @helper.action :render_audio %>
-
+<%= gibberails_include_tags() %>
+<%= gibberails_style :position => :absolute, :top => '0', :left => '0', :right => '0', :bottom => '0' %>
+<%= gibberails_load :code, :lang => :coffee, :wrap => :div %>
+<%= gibberails_ace :play , :lang => :coffee, :theme => :monokai%>

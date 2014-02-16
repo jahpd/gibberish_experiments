@@ -1,11 +1,19 @@
 (function() {
   window.RAILS = {};
 
-  window.RAILS.INIT = function(callback) {
-    Gibberish.init();
-    Gibberish.Time["export"]();
-    Gibberish.Binops["export"]();
-    return callback();
+  window.RAILS.INIT = function(time, callback) {
+    if (Gibberish.initialized) {
+      Gibberish.clear();
+    }
+    return setTimeout(function() {
+      Gibberish.init();
+      Gibberish.Time["export"]();
+      Gibberish.Binops["export"]();
+      Gibberish.initialized = true;
+      if (callback) {
+        return callback();
+      }
+    }, time);
   };
 
   window.RAILS.GEN = function(name, opt, c) {
@@ -43,13 +51,13 @@
     return u;
   };
 
-  window.RAILS.OP_MUL = Gibberish.Binops.Mul;
+  window.RAILS.OP = function(name, callback) {
+    return callback(Gibberish.Binops[name]);
+  };
 
   window.RAILS.GEN_SEQ = function(opt) {
     return new Gibberish.Sequencer(opt);
   };
-
-  window.RAILS.OP_ADD = Gibberish.Binops.Add;
 
   window.RAILS.TABLE_BIN = function(opt) {
     var i, j, max, powme, raw, _i, _j, _len, _ref, _ref1, _ref2;

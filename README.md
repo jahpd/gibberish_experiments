@@ -107,6 +107,10 @@ Hackeie, ajude-me a desenvolver um servidor seguro e com qualidade de audio :)
 
 # Versões
 
+- 0.0.22
+  - Criado novos helpers para gerar os scritps necessários para integração Ace/Gibberails
+  - Código correndo on-the-fly no editor
+  - BUG: Giberish não limpa adequadamente tabelas de audio entre as renderizações
 - 0.0.21
   - Design Principal feito
   - Editor de texto ace integrado

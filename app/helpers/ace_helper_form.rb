@@ -32,13 +32,11 @@ module AceHelper
 #   </div>
   module Form 
   
-    include ActionView::Helpers::TagHelper
-  
     def hidden_text_area(method)
       @template.text_area(:lib, method , size:"0x0")
     end
   
-    def load(method,  options)
+    def load(method, options)
       self.method = method
       self.lang = options[:lang]
       @template.content_tag(options[:wrap], '', {

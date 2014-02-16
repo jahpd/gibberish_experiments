@@ -1,31 +1,14 @@
+<%= gibberails_include_tags() %>
 <hr />
 <%= render 'menu'%>
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
 <h1 class="wtls centralized"><%= @little_text %></h1>
-<div >
-	<%= @helper.load :code, :lang => :coffee, :wrap => :div, :position => :absolute, :top => '37%', :left => '30%', :right => '30%', :bottom => '9%' %>
-	<%= @helper.run  @src, :theme => :monokai %>
-	<%= @helper.action :render_audio %>
-</div>
-<br />
-<br />
-<br />
-<br />
-<div>
-	<br />
-	<% @messages.each{|m| %>
-		<p class="little left"><%= m %></p>
-	<% } %>
-	<%= render 'footer' %>
-	<br />
-</div>
-<br />
-<br />
-<br />
-<hr />
-<%= javascript_include_tag "dashboard" %>
+<% @tested_on.each_pair{|k, v| %>
+	<p class="wtls centralized">!!!tesTED oN!!! <%= k %>
+		<% v.each_pair{|i, e|%>
+			/ <%= i %>(<%= e %>)
+		<% } %>	
+	</p>
+<% } %>
+<%= gibberails_style :position => :absolute, :top => '20%', :left => '15%', :right => '15%', :bottom => '0%' %>
+<%= gibberails_load :code, :lang => :coffee, :wrap => :div %>
+<%= gibberails_ace :dashboard , :lang => :coffee, :theme => :monokai%>

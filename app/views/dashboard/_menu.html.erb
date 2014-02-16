@@ -1,5 +1,9 @@
 <nav id="menu" class='centralized'>
-<% @menu.each {|e|%>
-	<%= link_to e[0], e[1]%> | 
-<%}%>
+<%= link_to 'Home', '/' %>
+ | 
+<%= link_to 'Create your own music library', '/libs' %>
+ | 
+<%= link_to 'How to', '/howtos' %>
+ | 
+<%= link_to 'live-coding', '/play' %>
 </nav>

@@ -104,7 +104,7 @@ class LibsController < ApplicationController
       s
     end
     
-    def write(libs, path, debug)
+    def write(libs, path, debug=false)
       if libs.length > 0
         string = genLibString(libs, "", debug)
         compiled = CoffeeScript.compile string

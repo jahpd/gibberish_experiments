@@ -1,14 +1,42 @@
+<%= render 'menu' %>
+<%= gibberails_include_tags() %>
+<div>
+	<h1 class="centralized">How much time you can spend to hear a sound?</h1>
+	<p class ="centralized">Music v. <%= @time %></p>
+	<%= gibberails_style :position => :absolute, :top => '20%', :left => '15%', :right => '15%', :bottom => '0%' %>
+	<%= gibberails_load :code, :lang => :coffee, :wrap => :div %>
+	<%= gibberails_ace :libs , :lang => :coffee, :theme => :monokai%>
+</div>
+
 <div class="centralized">
-	<%= link_to 'Home', '/' %>
-	|
-	<%= link_to 'live-coding', '/play' %>
-
-	<h1 class>How much time you can hear a sound?</h1>
-	<p><%= @current_version%></p>
-	<%= link_to 'New Module', new_lib_path %>
-
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
 	<div class="post shadow">
-		
+		<%= link_to 'New Module', new_lib_path %>
 		<br />
 		<% @libs.each do |lib| %>
       	<% v = "#{lib.author}.#{lib.name} | #{lib.created_at}" %>
@@ -17,5 +45,4 @@
     	<% end %>
 	</div>
 </div>
-<br>
-<%= javascript_include_tag "libs", "data-turbolinks-track" => true%>
+<br/>
