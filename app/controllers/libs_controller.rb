@@ -6,7 +6,15 @@ class LibsController < ApplicationController
   def index
     write Lib.all, "vendor/assets/javascripts/app_audio_lib.js", true
     @libs = Lib.all
-    @current_version = "Music version #{Date.new}"
+    @current_version = "Music version #{Time.now.httpdate}"
+    @render = {
+      :bindKeys => "bindKeys: win: 'Ctrl-Enter', linux: 'Ctrl-Enter', mac: 'Command-Enter'",
+      :exec => "exec: (e) -> RAILS.cleanAndCompile e, (js) -> eval js "
+    }
+    @stop = {
+      :bindKeys => "bindKeys: win: 'Ctrl-.', linux: 'Ctrl-.', mac: 'Command-.'",
+      :exec => "exec: (e) -> RAILS.clean -> console.log 'yay! cleaned!'"
+    }
   end
 
   # GET /libs/1

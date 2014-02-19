@@ -15,7 +15,7 @@
 #     - Re-Render Audio (with problems): Ctrl-Enter
 # - Mac: just switch Ctrl by Command
 RAILS.INIT 20000, ->
-  
+
   # Create a KarplusStrong instrument with random variables
   # Gibberish will route all audio for you
   karplus = RAILS.GEN_RANGE "KarplusStrong", 
