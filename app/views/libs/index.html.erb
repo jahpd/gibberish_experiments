@@ -3,9 +3,9 @@
 <div>
 	<h1 class="centralized">How much time you can spend to hear a sound?</h1>
 	<p class ="centralized">Music v. <%= @time %></p>
-	<%= gibberails_style :position => :absolute, :top => '20%', :left => '15%', :right => '15%', :bottom => '0%' %>
-	<%= gibberails_load :code, :lang => :coffee, :wrap => :div %>
-	<%= gibberails_ace :libs , :lang => :coffee, :theme => :monokai%>
+	<% gibberails_style :position => :absolute, :top => '20%', :left => '15%', :right => '15%', :bottom => '0%' %>
+	<%= gibberails_load :code, :libs, :lang => :coffee, :wrap => :div %>
+	<%= gibberails_run :theme => :monokai, :commands => {:render => @render, :stop => @stop} %>
 </div>
 
 <div class="centralized">

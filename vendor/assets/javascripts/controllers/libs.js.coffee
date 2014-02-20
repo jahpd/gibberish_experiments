@@ -1,7 +1,23 @@
+# # freenode.net#labmacambira 2014-02-12 16-29:00 UTC:
+#
+#  __YupanaKernel__ says to lalenia:
+#  >(try refresh your browser)
+#  >...sometimes, your are unnable to hear (or see) some things...
+#  >?ya wannabe careful with volume?or maybe security?
+#  >Place all the behaviors and hooks related to the matching controller here.
+#  >All this logic will automatically be available
+#  >You can use CoffeeScript
+#
+#  lalenia says to __YupanaKernel__:
+#  > you said (CoffeeScript)[http://www.coffeescript.org]
+#  > yay! FORK ME IN https://www.github.com/jahpd/gibberish_experiments/tree/gibberails_design
+#  > Creative Commons cc-by-sa 3.0
+#  > email to: yaknowboutblogmusic@riseup.net
+#
 # This is a default code to help you create an audio code in Rails server
 # You can use CoffeeScript in this file: http://coffeescript.org/rails
 #
-# Too initialize audio process in one line, call RAILS.INIT() or RAILS.INIT -> your callback block
+# Too initialize audio process in one line, call RAILS.INIT() or RAILS.INIT somenumber, -> your callback block
 # RAILS.[helpers] allow you to expand Gibberish function, creating an alghoritm music
 #   - RAILS.GEN name, options -> calls a Ugen
 #   - RAILS.GEN_RANGE name -> calls a Ugen with random values around giben ranges
@@ -14,72 +30,46 @@
 #     - Stop render audio: Ctrl-.
 #     - Re-Render Audio (with problems): Ctrl-Enter
 # - Mac: just switch Ctrl by Command
-RAILS.INIT 20000, ->
+#
+# A nice feature: try hide blocks of code ;)
+RAILS.INIT 1000, ->
 
   # Create a KarplusStrong instrument with random variables
   # Gibberish will route all audio for you
-  karplus = RAILS.GEN_RANGE "KarplusStrong", 
-    blend: [0.1, 0.99]
-    damping: [0.1, 0.99]
+  karplus = RAILS.GEN "KarplusStrong", 
+    blend: Add 0.95, RAILS.GEN_RAND("Triangle", amp:0.05, freq:[0.1, 2])
+    damping: Add 0.95, RAILS.GEN_RAND("Sine", amp:0.05, freq:[0.1, 2])
   
-  # An FX
-  # TODO switch to GEN or GEN_RANGE
-  buffer = new Gibberish.BufferShuffler
+  buffer = RAILS.GEN_RAND "BufferShuffler",
     input: karplus
-    chance:.45
-    amount:125
+    chance:[.5, .99]
+    amount:[441, 44100]
     rate:44100
-    pitchMin:-4
-    pitchMax:4
+    pitchMin:[-12, -0.1]
+    pitchMax:[0.1, 12]
   
-  # An FX
-  # TODO switch to GEN or GEN_RANGE
-  rev = new Gibberish.Reverb
+  rev = RAILS.GEN_RAND "Reverb", 
     input: buffer
-    roomSize: RAILS.GEN_RANGE "Sine",
-      freq: [0.001, 1]
-      amp: [0.9, 1]
-      pulsewidth: [0.1, 0.9]
-    wet:RAILS.GEN_RANGE "Sine",
-      freq: [0.5, 1.5]
-      amp: [0.9, 1]
-    dry:RAILS.GEN_RANGE "Triangle",
-      freq: [0.5, 1.5]
-      amp: [0.9, 1]
+    roomSize: [0.1, 1]
+    wet:[0.75, 0.9]
+    dry:[0.5, 0.75]
+ 
+  rev.connect()
   
-  # An FX
-  # TODO switch to GEN or GEN_RANGE
-  rev2 = new Gibberish.Reverb
-    input: rev
-    roomSize: 0.75
-    wet:0.75
-    dry:.5
- 
-  # Connect all to Speakers
-  rev2.connect()
- 
- # The sequence music
- # TODO switch arrays by functions that return an alghorimth array
-  RAILS.GEN_SEQ(
+  RAILS.GEN_SEQ 
     target: karplus
+    durations: ->
+      min = Gibberish.rndi(30, 500)
+      max = Gibberish.rndi(970, 1100)
+      [ms(min)..ms(max)]
     keysAndValues:
-      note: [
-        256, 512, 1024, 2048, 4096, 8192, 16384
-        2048, 4096, 8192, 16384, 512, 1024, 2048
-        8192, 16384, 512, 1024, 2048,256, 512, 1024
-        512, 1024, 256, 512, 1024, 
-        16384, 512, 1024, 2048
-        8192, 16384, 512, 1024, 2048,256, 512, 1024
-      ]
-      amp: i/16384 for i in [
-        16384, 16384, 16384,
-        256, 512, 1024, 2048, 4096, 8192, 16384
-        2048, 4096, 8192, 16384, 512, 1024, 2048
-        8192, 16384, 512, 1024, 2048, 256, 512, 1024
-        512, 1024, 256, 512, 1024, 16384, 512, 1024, 2048
-        8192, 16384, 512, 1024, 2048, 256, 512, 1024
-        16384, 512, 1024, 2048, 256, 512, 1024
-        512, 1024, 256, 512, 1024, 16384, 512, 
-      ]
-    durations:[ms(30)..ms(1000)]  
-  ).start()
+      note: ->
+        a = []
+        a[i] = Math.pow(2, i+8) for i in [0..7]
+        a[Gibberish.rndi(0, a.length-1)] for i in [0..21]
+      amp: ->
+        a = []
+        a[i] = Math.pow(2, i+8) for i in [0..7]
+        a[Gibberish.rndi(0, a.length-1)]/16384 for i in [0..13]
+   , (seq) -> seq.start()
+    

@@ -1,4 +1,4 @@
 <%= gibberails_include_tags() %>
-<%= gibberails_style :position => :absolute, :top => '0', :left => '0', :right => '0', :bottom => '0' %>
-<%= gibberails_load :code, :lang => :coffee, :wrap => :div %>
-<%= gibberails_ace :play , :lang => :coffee, :theme => :monokai%>
+<% gibberails_style :position => :absolute, :top => '0', :left => '0', :right => '0', :bottom => '0'%>
+<%= gibberails_load :code, :play, :lang => :coffee, :wrap => :div %>
+<%= gibberails_run :theme => :monokai, :commands => {:render => @render, :stop => @stop} %>

@@ -25,12 +25,12 @@ window.RAILS =
   execute: (compile, data, callback) ->
     try
       js = unescape(data)
-      js = compile js, bare:true
+      js = compile js, bare:true, map:{}
       js = unescape js
       if callback then callback !js, js
     catch e
       window.RAILS.initialized = false
-      alert "#{compile.prototype.name}:\n#{e}"
+      alert "#{compile.prototype.name}:\n#{js.map}#{e}"
       
   run: (callback)->
     console.log 'Operating compilation...'
@@ -126,8 +126,7 @@ window.RAILS =
   # Um simples sequenciador
   # @return Gibberish.Sequencer
   GEN_SEQ: (o, c) ->
-    _o = target: o.target, key: o.key, keysAndValues: null, durations: null
-    _o.keysAndValues[k] = fn() for k, fn in o.keysAndValues
-    _o.durations[k] = fn() for k, fn in o.durations
-    u = Gibberish.Sequencer _o
+    o.keysAndValues[k] = v() for k, v of o.keysAndValues 
+    o.durations = o.durations()
+    u = new Gibberish.Sequencer(o)
     if c then c u else u

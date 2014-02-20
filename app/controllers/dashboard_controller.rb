@@ -28,6 +28,14 @@ class DashboardController < ApplicationController
   end
   
   def play
+    @render = {
+      :bindKeys => "win: 'Ctrl-Enter', linux: 'Ctrl-Enter', mac: 'Command-Enter'",
+      :exec => "(editor) -> RAILS.run (result)-> RAILS.initialized = !!result"
+    }
+    @stop = {
+      :bindKeys => "win: 'Ctrl-.', linux: 'Ctrl-.', mac: 'Command-.'",
+      :exec => "(editor) -> RAILS.clean()"
+    }
     
   end
   
